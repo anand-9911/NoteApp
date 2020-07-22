@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import AddNotes from './components/notes/AddNotes';
+import EditNote from './components/notes/EditNote';
+import ShowNote from './components/notes/ShowNote';
+import CalendarComponent from './components/CalendarComponent';
+import { Container, Col, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-function App() {
+const App = ({ isDateClicked }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Container fluid>
+        <Row>
+          <Col>
+            <CalendarComponent />
+          </Col>
+          <Col>
+            <ShowNote />
+          </Col>
+        </Row>
+        <Row>
+          <Col>{isDateClicked && <AddNotes />}</Col>
+          <Col>
+            <EditNote />
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
-}
+};
 
-export default App;
+const mapStateToProps = (state) => ({
+  isDateClicked: state.notesReducer.isDateClicked,
+});
+
+export default connect(mapStateToProps)(App);
