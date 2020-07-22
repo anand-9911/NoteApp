@@ -3,30 +3,35 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAllNotes } from '../../actions/notes';
 import Moment from 'moment';
+import NoteItem from './NoteItem';
 
 const ShowNote = ({ date, getAllNotes, notes, isDateClicked }) => {
   useEffect(() => {
     getAllNotes();
+    
   }, [getAllNotes]);
+  
+
+  let matchNotes = [];
 
   const renderNotes = () => {
-    let match = [];
     let formattedDate = Moment(date).format('YYYY-MM-DD');
-
-    console.log(formattedDate);
+    
     if (isDateClicked) {
       notes.map((note) => {
-        if (note.date === date) {
-          match.push(note);
+        if (note.date === formattedDate) {
+          matchNotes.push(note);
         }
       });
     }
+    return matchNotes
   };
-
+  
+renderNotes()
   return (
-    <div>
-      SHOW NOTE <div>{renderNotes()}</div>
-    </div>
+    <>
+     {matchNotes.length>0 && <NoteItem notesMatched={matchNotes}/>}
+    </>
   );
 };
 
