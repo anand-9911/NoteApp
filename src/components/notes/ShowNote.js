@@ -12,15 +12,14 @@ const ShowNote = ({ date, getAllNotes, notes, isDateClicked }) => {
   const renderNotes = () => {
     let match = [];
     let formattedDate = Moment(date).format('YYYY-MM-DD');
-
-    console.log(formattedDate);
     if (isDateClicked) {
       notes.map((note) => {
-        if (note.date === date) {
+        if (note.date === formattedDate) {
           match.push(note);
         }
       });
     }
+    console.log(match);
   };
 
   return (
