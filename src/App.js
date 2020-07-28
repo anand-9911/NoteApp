@@ -1,37 +1,31 @@
 import React from 'react';
 import './App.css';
-import AddNotes from './components/notes/AddNotes';
-import EditNote from './components/notes/EditNote';
-import ShowNote from './components/notes/ShowNote';
-import CalendarComponent from './components/CalendarComponent';
-import { Container, Col, Row } from 'react-bootstrap';
-import { connect } from 'react-redux';
-
-const App = ({ isDateClicked }) => {
+import GiveAlert from './components/layout/GiveAlert'
+import { Router, Route, Switch } from 'react-router-dom';
+import history from './history';
+import Main from './Main';
+import ShowText from './components/notes/ShowText'
+const App = () => {
   return (
     <>
-      <Container fluid>
-        <Row>
-          <Col>
-            <CalendarComponent />
-          </Col>
-          <Col>
-            <ShowNote />
-          </Col>
-        </Row>
-        <Row>
-          <Col>{isDateClicked && <AddNotes />}</Col>
-          <Col>
-            <EditNote />
-          </Col>
-        </Row>
-      </Container>
+       <div>
+        <Router history={history}>
+          
+          <GiveAlert />
+          <div>
+         
+                <Switch>
+                  <Route exact path='/' component={Main} />
+                  <Route exact path='/show-note' component={ShowText} />
+                </Switch>
+          </div>
+          
+        </Router>
+      </div>
     </>
   );
 };
 
-const mapStateToProps = (state) => ({
-  isDateClicked: state.notesReducer.isDateClicked,
-});
 
-export default connect(mapStateToProps)(App);
+
+export default App;
