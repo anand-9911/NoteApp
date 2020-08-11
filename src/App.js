@@ -15,6 +15,7 @@ import About from './components/About';
 import store from './store';
 import setToken from './utils/setToken';
 import { loadUser } from './actions/auth';
+import { checkHeader } from './utils/utilityFunctions';
 
 if (localStorage.token) {
   setToken(localStorage.token);
@@ -24,6 +25,11 @@ const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
+
+  useEffect(() => {
+    checkHeader();
+  }, []);
+
   return (
     <>
       <Router history={history}>

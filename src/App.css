@@ -3,6 +3,10 @@
   height: 30;
 } */
 
+body {
+  font-family: 'Chilanka', cursive;
+}
+
 li {
   list-style: none;
 }
@@ -25,6 +29,26 @@ ul {
 
 .navbar {
   z-index: 2;
+  background-color: rgba(216, 241, 240, 0.452);
+  color: black;
+}
+
+.nav-link:hover {
+  background-color: lightblue;
+  border-radius: 30%;
+  border-bottom: 1px gray solid;
+}
+.cover-header {
+  background: url('./images/cover.jpg') no-repeat top center/cover;
+  height: 70px;
+  position: relative;
+  color: antiquewhite;
+}
+
+.form-group label {
+  text-transform: uppercase;
+  margin: 10px;
+  border-bottom: 1px salmon solid;
 }
 /* Cover Image */
 

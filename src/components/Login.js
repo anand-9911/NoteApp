@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../actions/auth';
+import { checkHeader } from '../utils/utilityFunctions';
 
 const Login = ({ login, isAuth }) => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,9 @@ const Login = ({ login, isAuth }) => {
   });
 
   const { email, password } = formData;
+  useEffect(() => {
+    checkHeader();
+  }, []);
 
   const onInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -58,11 +62,14 @@ const Login = ({ login, isAuth }) => {
           />
         </div>
 
-        <button type='submit' className='btn btn-primary'>
-          Login
+        <button type='submit' className='btn btn-success'>
+          LOGIN
         </button>
         <div>
-          If not registered <Link to='/register'>click here</Link>
+          If not registered{' '}
+          <Link to='/register' className='btn btn-outline-primary'>
+            click here
+          </Link>
         </div>
       </form>
     </>

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { register } from '../actions/auth';
 import { setAlert } from '../actions/alert';
+import { checkHeader } from '../utils/utilityFunctions';
 
 const Register = ({ register, setAlert, isAuth }) => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,9 @@ const Register = ({ register, setAlert, isAuth }) => {
     password: '',
     password1: '',
   });
+  useEffect(() => {
+    checkHeader();
+  }, []);
 
   const { name, email, password, password1 } = formData;
 
@@ -89,11 +93,14 @@ const Register = ({ register, setAlert, isAuth }) => {
           />
         </div>
 
-        <button type='submit' className='btn btn-primary'>
-          Register
+        <button type='submit' className='btn btn-success'>
+          REGISTER
         </button>
         <div>
-          If already registered <Link to='/login'>click here</Link>
+          If already registered{' '}
+          <Link to='/login' className='btn btn-outline-primary'>
+            click here
+          </Link>
         </div>
       </form>
     </>

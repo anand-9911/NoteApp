@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Particles from 'react-particles-js';
+import { checkHeader } from '../utils/utilityFunctions';
 
 const particlesOptions = {
   particles: {
@@ -25,7 +26,12 @@ const particlesOptions = {
 };
 
 const Home = ({ isAuth }) => {
+  useEffect(() => {
+    checkHeader();
+  }, []);
+
   if (isAuth) return <Redirect to='/about' />;
+
   return (
     <>
       <Particles className='particle' params={particlesOptions} />
@@ -40,7 +46,7 @@ const Home = ({ isAuth }) => {
               LOGIN
             </Link>
             <Link to='/register' className='btn btn-secondary button-item '>
-              Register
+              REGISTER
             </Link>
           </div>
         </div>

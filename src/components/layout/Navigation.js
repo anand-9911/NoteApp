@@ -52,17 +52,16 @@ const Navigation = ({ isAuth, logout }) => {
 
   return (
     <>
-      <header className='navbar navbar-expand-lg navbar-light bg-light flex-column flex-md-row bd-navbar'>
+      <header className='navbar navbar-expand-lg navbar-light bg-light flex-column flex-md-row bd-navbar '>
         <Link className='navbar-brand mr-0 mr-md-2' to='/home'>
           <img
             src={logo}
             alt='Meet-Up'
             id='logo'
-            width='45'
-            height='45'
+            width='70'
+            height='50'
             loading='lazy'
             className='d-block align-top'
-            viewBox='0 0 612 612'
           />
         </Link>
         <div className='navbar-nav-scroll'>
