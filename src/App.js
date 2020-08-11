@@ -29,18 +29,20 @@ const App = () => {
       <Router history={history}>
         <Navigation />
         <GiveAlert />
-        <section className='container-fluid' style={{ paddingTop: 10 }}>
-          <Switch>
+
+        <Switch>
+          <Route exact path='/home' component={Home} />
+          <Route exact path='/' component={Home} />
+          <section className='container-fluid' style={{ paddingTop: 10 }}>
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
-            <Route exact path='/home' component={Home} />
-            <Route exact path='/' component={Home} />
+
             <PrivateRoute exact path='/create-note' component={Main} />
             <PrivateRoute exact path='/friends' component={Friends} />
             <PrivateRoute exact path='/show-note' component={ShowText} />
             <PrivateRoute exact path='/about' component={About} />
-          </Switch>
-        </section>
+          </section>
+        </Switch>
       </Router>
     </>
   );

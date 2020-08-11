@@ -23,6 +23,14 @@ const Login = ({ login, isAuth }) => {
   if (isAuth) return <Redirect to='/about' />;
   return (
     <>
+      <div className='login-cover'>
+        <div className='content'>
+          <h3>
+            LOGIN:- <h5>To check on your friends</h5>
+          </h3>
+        </div>
+      </div>
+
       <form onSubmit={(e) => onFormSubmit(e)}>
         <div className='form-group'>
           <label>Email address</label>

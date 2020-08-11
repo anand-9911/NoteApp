@@ -27,7 +27,13 @@ const Register = ({ register, setAlert, isAuth }) => {
   if (isAuth) return <Redirect to='/about' />;
   return (
     <>
-      {' '}
+      <div className='register-cover'>
+        <div className='content'>
+          <h3>
+            Register:- <h5>To access the premium features</h5>
+          </h3>
+        </div>
+      </div>
       <form onSubmit={(e) => onFormSubmit(e)}>
         <div className='form-group'>
           <label>Name</label>
