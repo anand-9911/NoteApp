@@ -2,3 +2,31 @@
   width: 70px;
   height: 70px;
 }
+
+li {
+  list-style: none;
+}
+
+#main-nav {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+#main-nav ul {
+  display: flex;
+}
+#main-nav li {
+  padding: 1rem;
+}
+/* .link {
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  border-bottom: 3px transparent solid;
+  padding-bottom: 0.5rem;
+  transition: border-color 0.5s;
+} */
+
+.link:hover {
+  border-color: mediumaquamarine;
+}
