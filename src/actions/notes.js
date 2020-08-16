@@ -22,7 +22,7 @@ export const addNotes = (formData) => (dispatch) => {
     dispatch({
       type: CREATE_NOTE,
     });
-    dispatch(setAlert("Note Added","success"))
+    dispatch(setAlert('Note Added', 'success'));
   } catch (error) {
     dispatch({
       type: NOTE_ERROR,
@@ -35,14 +35,13 @@ export const editNoteAction = (formData) => (dispatch) => {
       type: EDIT_NOTE,
     });
     dispatch(getAllNotes());
-    dispatch(setAlert("Note Edited","success"))
+    dispatch(setAlert('Note Edited', 'success'));
   } catch (error) {
     dispatch({
       type: NOTE_ERROR,
     });
   }
 };
-
 
 export const getAllNotes = () => (dispatch) => {
   try {
@@ -60,6 +59,7 @@ export const getAllNotes = () => (dispatch) => {
 };
 
 export const onCalendarClick = (date) => (dispatch) => {
+  console.log(date);
   dispatch({
     type: CALENDAR_CLICK,
     payload: date,
@@ -68,7 +68,7 @@ export const onCalendarClick = (date) => (dispatch) => {
 export const onEditClick = (note) => (dispatch) => {
   dispatch({
     type: EDIT_CLICK,
-    payload:note
+    payload: note,
   });
 };
 
@@ -78,26 +78,26 @@ export const makeEditValueNull = () => (dispatch) => {
   });
 };
 
-
-
 export const deleteNotes = (note) => (dispatch) => {
   try {
-    let notes = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : [];
+    let notes = localStorage.getItem('notes')
+      ? JSON.parse(localStorage.getItem('notes'))
+      : [];
     let index;
     for (let i = 0; i < notes.length; i++) {
-        if (notes[i].id === note.id) {
-          index=i;
-          break;
-        }
+      if (notes[i].id === note.id) {
+        index = i;
+        break;
+      }
     }
-    if(index === undefined) return 
+    if (index === undefined) return;
     notes.splice(index, 1);
     localStorage.setItem('notes', JSON.stringify(notes));
     dispatch({
       type: DELETE_NOTE,
     });
     dispatch(getAllNotes());
-    dispatch(setAlert("Note Deleted","danger"))
+    dispatch(setAlert('Note Deleted', 'danger'));
   } catch (error) {
     dispatch({
       type: NOTE_ERROR,

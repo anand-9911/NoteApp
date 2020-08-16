@@ -12,16 +12,15 @@ const Main = ({ isDateClicked }) => {
       <Container fluid>
         <Row>
           <Col>
-            <CalendarComponent />
+            <AddNotes />
           </Col>
           <Col>
-            <ShowNote />
+            <div>ShowNote</div>
           </Col>
         </Row>
         <Row>
-          <Col>{isDateClicked && <AddNotes />}</Col>
           <Col>
-            <EditNote />
+            <div>EditNote</div>
           </Col>
         </Row>
       </Container>

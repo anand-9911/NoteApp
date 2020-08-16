@@ -38,6 +38,18 @@ ul {
   border-radius: 30%;
   border-bottom: 1px gray solid;
 }
+
+.current {
+  background-color: lightblue;
+  border-radius: 30%;
+  border-bottom: 1px gray solid;
+}
+
+.dark {
+  font-weight: 1000;
+  font-size: large;
+}
+
 .cover-header {
   background: url('./images/cover.jpg') no-repeat top center/cover;
   height: 70px;

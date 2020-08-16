@@ -10,10 +10,17 @@ const AddNotes = ({ addNotes, date, getAllNotes }) => {
     title: '',
     text: '',
     id: '',
-    date: '',
+    dateTime: '',
   });
 
-  const { title, text } = formData;
+  // const [dateTime, setDateTime] = useState({
+  //   date2: '',
+  //   time2: '',
+  // });
+
+  // const { date2, time2 } = dateTime;
+
+  const { title, text, dateTime } = formData;
   let formattedDate = Moment(date).format('YYYY-MM-DD');
 
   const onChange = (e) => {
@@ -22,25 +29,37 @@ const AddNotes = ({ addNotes, date, getAllNotes }) => {
       ...formData,
       [e.target.name]: e.target.value,
       id: id,
-      date: formattedDate,
     });
   };
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    addNotes(formData);
-    onDiscard();
-    getAllNotes();
+    console.log(formData);
   };
 
   const onDiscard = () => {
     setformData({ ...formData, text: '', title: '', id: '' });
   };
 
+  // const onInputChange = (e) => {
+  //   setDateTime({ ...dateTime, [e.target.name]: e.target.value });
+  // };
+
   return (
     <>
-      <h3>ADD NOTES</h3>
+      <h3>Add event in your Calender</h3>
       <form className='form' onSubmit={(e) => onFormSubmit(e)}>
+        <div className='form-group'>
+          <input
+            type='datetime-local'
+            id='meeting-time'
+            name='dateTime'
+            value={dateTime}
+            onChange={(e) => onChange(e)}
+            min='1947-01-01T00:00'
+            max='2050-01-01T00:00'
+          />
+        </div>
         <div className='form-group'>
           <label>Title</label>
           <input

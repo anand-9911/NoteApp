@@ -23,7 +23,7 @@ const Navigation = ({ isAuth, logout }) => {
         </Link>
       </li>
       <li className='nav-item'>
-        <Link className='nav-link' onClick={logout}>
+        <Link className='nav-link' onClick={logout} to='/home'>
           Logout
         </Link>
       </li>
@@ -33,22 +33,39 @@ const Navigation = ({ isAuth, logout }) => {
   const nonAuthLinks = () => (
     <>
       <li className='nav-item'>
-        <Link className='nav-link' to='/home'>
+        <Link className='nav-link dark' to='/home'>
           Home
         </Link>
       </li>
       <li className='nav-item'>
-        <Link className='nav-link' to='/register'>
+        <Link className='nav-link dark' to='/register'>
           Register
         </Link>
       </li>
       <li className='nav-item'>
-        <Link className='nav-link' to='/login'>
+        <Link className='nav-link dark' to='/login'>
           Login
         </Link>
       </li>
     </>
   );
+
+  const callEvenListener = (e) => {
+    const tagretedLink = e.target;
+    let current = window.location.pathname;
+
+    if (current === tagretedLink.pathname) {
+      const allLinks = document.querySelectorAll('.nav-link');
+
+      allLinks.forEach((link) => {
+        if (link.pathname === current) {
+          link.classList.add('current');
+        } else {
+          link.classList.remove('current');
+        }
+      });
+    }
+  };
 
   return (
     <>
@@ -65,7 +82,9 @@ const Navigation = ({ isAuth, logout }) => {
           />
         </Link>
         <div className='navbar-nav-scroll'>
-          <ul className='navbar-nav bd-navbar-nav flex-row'>
+          <ul
+            className='navbar-nav bd-navbar-nav flex-row'
+            onClick={(e) => callEvenListener(e)}>
             {isAuth ? authLinks() : nonAuthLinks()}
           </ul>
         </div>
