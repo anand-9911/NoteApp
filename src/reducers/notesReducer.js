@@ -6,16 +6,17 @@ import {
   CALENDAR_CLICK,
   GET_NOTES,
   EDIT_CLICK,
-  NULL_VALUE
+  NULL_VALUE,
 } from '../actions/types';
 
 const initialState = {
   notes: [],
+  note: null,
+  loading: true,
   isDateClicked: false,
-  isEditClicked:false,
-  date: '',
+  isEditClicked: false,
   error: {},
-  editNote:{}
+  editNote: {},
 };
 
 export default function (state = { initialState }, action) {
@@ -24,44 +25,43 @@ export default function (state = { initialState }, action) {
     case CREATE_NOTE:
       return {
         ...state,
+        note: payload,
+        loading: false,
       };
-      case DELETE_NOTE:
+    case DELETE_NOTE:
       return {
         ...state,
       };
-      case EDIT_NOTE:
+    case EDIT_NOTE:
       return {
         ...state,
-        isEditClicked:false,
-        editNote:{}
+        isEditClicked: false,
+        editNote: {},
       };
     case GET_NOTES:
       return {
         ...state,
         notes: payload,
       };
-    case CALENDAR_CLICK:
-      return {
-        ...state,
-        date: payload,
-        isDateClicked: true,
-      };
+
     case EDIT_CLICK:
       return {
         ...state,
         isEditClicked: true,
-        editNote:payload
+        editNote: payload,
       };
     case NOTE_ERROR:
       return {
         ...state,
-        users:null
+        notes: [],
+        note: null,
+        loading: false,
       };
     case NULL_VALUE:
       return {
         ...state,
-        isEditClicked:false,
-        editNote:{}
+        isEditClicked: false,
+        editNote: {},
       };
     default:
       return state;

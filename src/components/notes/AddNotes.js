@@ -5,45 +5,35 @@ import { addNotes, getAllNotes } from '../../actions/notes';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
-const AddNotes = ({ addNotes, date, getAllNotes }) => {
+const AddNotes = ({ addNotes, getAllNotes }) => {
   const [formData, setformData] = useState({
     title: '',
-    text: '',
-    id: '',
-    dateTime: '',
+    description: '',
+    date: '',
+    time: '',
   });
 
-  // const [dateTime, setDateTime] = useState({
-  //   date2: '',
-  //   time2: '',
-  // });
-
-  // const { date2, time2 } = dateTime;
-
-  const { title, text, dateTime } = formData;
-  let formattedDate = Moment(date).format('YYYY-MM-DD');
+  const [dateTime, setDateTime] = useState('');
+  const { title, description, date, time } = formData;
 
   const onChange = (e) => {
     const id = uuidv4();
     setformData({
       ...formData,
       [e.target.name]: e.target.value,
-      id: id,
+      date: dateTime.slice(0, 10),
+      time: dateTime.slice(11),
     });
   };
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    addNotes(formData);
   };
 
   const onDiscard = () => {
-    setformData({ ...formData, text: '', title: '', id: '' });
+    setformData({ ...formData, description: '', title: '', id: '' });
   };
-
-  // const onInputChange = (e) => {
-  //   setDateTime({ ...dateTime, [e.target.name]: e.target.value });
-  // };
 
   return (
     <>
@@ -55,7 +45,7 @@ const AddNotes = ({ addNotes, date, getAllNotes }) => {
             id='meeting-time'
             name='dateTime'
             value={dateTime}
-            onChange={(e) => onChange(e)}
+            onChange={(e) => setDateTime(e.target.value)}
             min='1947-01-01T00:00'
             max='2050-01-01T00:00'
           />
@@ -63,7 +53,7 @@ const AddNotes = ({ addNotes, date, getAllNotes }) => {
         <div className='form-group'>
           <label>Title</label>
           <input
-            type='text'
+            type='description'
             name='title'
             className='form-control'
             placeholder='Enter the Title'
@@ -76,9 +66,9 @@ const AddNotes = ({ addNotes, date, getAllNotes }) => {
           <label>Content</label>
           <textarea
             class='form-control'
-            name='text'
+            name='description'
             rows='5'
-            value={text}
+            value={description}
             placeholder='Enter your notes here...'
             onChange={(e) => onChange(e)}
             required></textarea>

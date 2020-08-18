@@ -17,6 +17,7 @@ router.post(
       check('title', 'Title is required').not().isEmpty(),
       check('description', 'Description is required').not().isEmpty(),
       check('date', 'Date is required').not().isEmpty(),
+      check('time', 'Time is required').not().isEmpty(),
     ],
   ],
 
@@ -26,7 +27,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { title, description, date } = req.body;
+    const { title, description, date, time } = req.body;
 
     try {
       //See if note title exists
@@ -43,6 +44,7 @@ router.post(
         title,
         description,
         date,
+        time,
         user: req.user.id,
       });
       const newNote = await note.save();

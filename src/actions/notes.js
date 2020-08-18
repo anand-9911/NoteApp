@@ -8,22 +8,34 @@ import {
   EDIT_CLICK,
   NULL_VALUE,
 } from './types';
+import axios from 'axios';
 
 import { setAlert } from './alert';
 
-export const addNotes = (formData) => (dispatch) => {
+export const addNotes = (formData) => async (dispatch) => {
   try {
-    let notes = JSON.parse(localStorage.getItem('notes') || '[]');
-
-    let note = formData;
-    notes.push(note);
-    localStorage.setItem('notes', JSON.stringify(notes));
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    console.log(formData);
+    const res = await axios.post(
+      '/api/notes',
+      JSON.stringify(formData),
+      config
+    );
 
     dispatch({
       type: CREATE_NOTE,
+      payload: res.data,
     });
     dispatch(setAlert('Note Added', 'success'));
   } catch (error) {
+    // const errors = error.response.data.errors;
+    // if (errors) {
+    //   errors.forEach((error) => dispatch(setAlert(error.mgs, 'danger')));
+    // }
     dispatch({
       type: NOTE_ERROR,
     });
