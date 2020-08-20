@@ -4,14 +4,12 @@ import {
   GET_NOTES,
   DELETE_NOTE,
   NOTE_ERROR,
-  CALENDAR_CLICK,
-  EDIT_CLICK,
-  NULL_VALUE,
 } from './types';
 import axios from 'axios';
 
 import { setAlert } from './alert';
 
+// Creating notes
 export const addNotes = (formData) => async (dispatch) => {
   try {
     const config = {
@@ -32,36 +30,23 @@ export const addNotes = (formData) => async (dispatch) => {
     });
     dispatch(setAlert('Note Added', 'success'));
   } catch (error) {
-    // const errors = error.response.data.errors;
-    // if (errors) {
-    //   errors.forEach((error) => dispatch(setAlert(error.mgs, 'danger')));
-    // }
-    dispatch({
-      type: NOTE_ERROR,
-    });
-  }
-};
-export const editNoteAction = (formData) => (dispatch) => {
-  try {
-    dispatch({
-      type: EDIT_NOTE,
-    });
-    dispatch(getAllNotes());
-    dispatch(setAlert('Note Edited', 'success'));
-  } catch (error) {
+    const errors = error.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.mgs, 'danger')));
+    }
     dispatch({
       type: NOTE_ERROR,
     });
   }
 };
 
-export const getAllNotes = () => (dispatch) => {
+//Fetching notes for users
+export const getAllNotes = () =>  async (dispatch) => {
   try {
-    let notes = JSON.parse(localStorage.getItem('notes') || '[]');
-
+    const res= await axios.get('/api/notes')
     dispatch({
       type: GET_NOTES,
-      payload: notes,
+      payload: res.data,
     });
   } catch (error) {
     dispatch({
@@ -70,25 +55,6 @@ export const getAllNotes = () => (dispatch) => {
   }
 };
 
-export const onCalendarClick = (date) => (dispatch) => {
-  console.log(date);
-  dispatch({
-    type: CALENDAR_CLICK,
-    payload: date,
-  });
-};
-export const onEditClick = (note) => (dispatch) => {
-  dispatch({
-    type: EDIT_CLICK,
-    payload: note,
-  });
-};
-
-export const makeEditValueNull = () => (dispatch) => {
-  dispatch({
-    type: NULL_VALUE,
-  });
-};
 
 export const deleteNotes = (note) => (dispatch) => {
   try {

@@ -3,10 +3,7 @@ import {
   EDIT_NOTE,
   DELETE_NOTE,
   NOTE_ERROR,
-  CALENDAR_CLICK,
   GET_NOTES,
-  EDIT_CLICK,
-  NULL_VALUE,
 } from '../actions/types';
 
 const initialState = {
@@ -42,13 +39,7 @@ export default function (state = { initialState }, action) {
       return {
         ...state,
         notes: payload,
-      };
-
-    case EDIT_CLICK:
-      return {
-        ...state,
-        isEditClicked: true,
-        editNote: payload,
+        loading:false,
       };
     case NOTE_ERROR:
       return {
@@ -56,12 +47,6 @@ export default function (state = { initialState }, action) {
         notes: [],
         note: null,
         loading: false,
-      };
-    case NULL_VALUE:
-      return {
-        ...state,
-        isEditClicked: false,
-        editNote: {},
       };
     default:
       return state;

@@ -4,7 +4,6 @@ import GiveAlert from './components/layout/GiveAlert';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import history from './history';
 import Main from './Main';
-import ShowText from './components/notes/ShowText';
 import Navigation from './components/layout/Navigation';
 import Register from './components/Register';
 import Login from './components/Login';
@@ -45,7 +44,6 @@ const App = () => {
 
             <PrivateRoute exact path='/create-note' component={Main} />
             <PrivateRoute exact path='/friends' component={Friends} />
-            <PrivateRoute exact path='/show-note' component={ShowText} />
             <PrivateRoute exact path='/about' component={About} />
           </section>
         </Switch>

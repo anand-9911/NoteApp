@@ -1,12 +1,9 @@
 import React from 'react';
 import AddNotes from './components/notes/AddNotes';
-import EditNote from './components/notes/EditNote';
 import ShowNote from './components/notes/ShowNote';
-import CalendarComponent from './components/CalendarComponent';
 import { Container, Col, Row } from 'react-bootstrap';
-import { connect } from 'react-redux';
 
-const Main = ({ isDateClicked }) => {
+const Main = () => {
   return (
     <>
       <Container fluid>
@@ -15,7 +12,7 @@ const Main = ({ isDateClicked }) => {
             <AddNotes />
           </Col>
           <Col>
-            <div>ShowNote</div>
+            <ShowNote/>
           </Col>
         </Row>
         <Row>
@@ -28,8 +25,6 @@ const Main = ({ isDateClicked }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  isDateClicked: state.notesReducer.isDateClicked,
-});
 
-export default connect(mapStateToProps)(Main);
+
+export default Main;
