@@ -15,6 +15,9 @@ import store from './store';
 import setToken from './utils/setToken';
 import { loadUser } from './actions/auth';
 import { checkHeader } from './utils/utilityFunctions';
+import ViewNote from './components/notes/ViewNote';
+import DeleteNote from './components/notes/DeleteNote';
+import EditNote from './components/notes/EditNote';
 
 if (localStorage.token) {
   setToken(localStorage.token);
@@ -41,9 +44,11 @@ const App = () => {
           <section className='container-fluid' style={{ paddingTop: 10 }}>
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
-
             <PrivateRoute exact path='/create-note' component={Main} />
             <PrivateRoute exact path='/friends' component={Friends} />
+            <PrivateRoute exact path='/view-note' component={ViewNote} />
+            <PrivateRoute exact path='/delete-note' component={DeleteNote} />
+            <PrivateRoute exact path='/edit-note' component={EditNote} />
             <PrivateRoute exact path='/about' component={About} />
           </section>
         </Switch>

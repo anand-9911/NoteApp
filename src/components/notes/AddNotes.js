@@ -4,7 +4,7 @@ import { addNotes, getAllNotes } from '../../actions/notes';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
-const AddNotes = ({ addNotes, getAllNotes }) => {
+const AddNotes = ({ addNotes }) => {
   const [formData, setformData] = useState({
     title: '',
     description: '',
@@ -14,6 +14,11 @@ const AddNotes = ({ addNotes, getAllNotes }) => {
 
   const [dateTime, setDateTime] = useState('');
   const { title, description, date, time } = formData;
+  console.log(dateTime);
+
+  const onDateChange = (e) => {
+    setDateTime(e.target.value);
+  };
 
   const onChange = (e) => {
     const id = uuidv4();
@@ -44,7 +49,7 @@ const AddNotes = ({ addNotes, getAllNotes }) => {
             id='meeting-time'
             name='dateTime'
             value={dateTime}
-            onChange={(e) => setDateTime(e.target.value)}
+            onInput={(e) => onDateChange(e)}
             min='1947-01-01T00:00'
             max='2050-01-01T00:00'
           />
@@ -86,11 +91,6 @@ const AddNotes = ({ addNotes, getAllNotes }) => {
 
 AddNotes.propTypes = {
   addNotes: PropTypes.func.isRequired,
-  getAllNotes: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  date: state.notesReducer.date,
-});
-
-export default connect(mapStateToProps, { addNotes, getAllNotes })(AddNotes);
+export default connect(null, { addNotes })(AddNotes);

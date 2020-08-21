@@ -39,12 +39,11 @@ export default function (state = { initialState }, action) {
       return {
         ...state,
         notes: payload,
-        loading:false,
+        loading: false,
       };
     case NOTE_ERROR:
       return {
         ...state,
-        notes: [],
         note: null,
         loading: false,
       };

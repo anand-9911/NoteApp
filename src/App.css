@@ -171,3 +171,17 @@ ul {
   left: 0;
   z-index: 1; /* use when position fixed and what layer we want i.e for below -1*/
 }
+
+#buttons span {
+  margin: 2px;
+}
+
+.dateTime {
+  border: 0.5px solid grey;
+  float: right;
+  color: brown;
+}
+.dateTime span {
+  font-size: larger;
+  color: black;
+}

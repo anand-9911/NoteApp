@@ -29,10 +29,11 @@ export const addNotes = (formData) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(setAlert('Note Added', 'success'));
+    dispatch(getAllNotes());
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.mgs, 'danger')));
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
     }
     dispatch({
       type: NOTE_ERROR,
@@ -41,9 +42,9 @@ export const addNotes = (formData) => async (dispatch) => {
 };
 
 //Fetching notes for users
-export const getAllNotes = () =>  async (dispatch) => {
+export const getAllNotes = () => async (dispatch) => {
   try {
-    const res= await axios.get('/api/notes')
+    const res = await axios.get('/api/notes');
     dispatch({
       type: GET_NOTES,
       payload: res.data,
@@ -54,7 +55,6 @@ export const getAllNotes = () =>  async (dispatch) => {
     });
   }
 };
-
 
 export const deleteNotes = (note) => (dispatch) => {
   try {
