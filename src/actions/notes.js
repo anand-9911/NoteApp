@@ -34,7 +34,7 @@ export const addNotes = (formData) => async (dispatch) => {
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach((error) => dispatch(setAlert(error.mgs, 'danger')));
     }
     dispatch({
       type: NOTE_ERROR,
@@ -98,7 +98,7 @@ export const editNote = (formData, id) => async (dispatch) => {
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach((error) => dispatch(setAlert(error.mgs, 'danger')));
     }
     dispatch({
       type: NOTE_ERROR,
