@@ -6,6 +6,7 @@ import {
   NOTE_ERROR,
 } from './types';
 import axios from 'axios';
+import history from '../history';
 
 import { setAlert } from './alert';
 
@@ -56,27 +57,49 @@ export const getAllNotes = () => async (dispatch) => {
   }
 };
 
-export const deleteNotes = (note) => (dispatch) => {
+//function to delete notes
+export const deleteNotes = (id) => async (dispatch) => {
   try {
-    let notes = localStorage.getItem('notes')
-      ? JSON.parse(localStorage.getItem('notes'))
-      : [];
-    let index;
-    for (let i = 0; i < notes.length; i++) {
-      if (notes[i].id === note.id) {
-        index = i;
-        break;
-      }
-    }
-    if (index === undefined) return;
-    notes.splice(index, 1);
-    localStorage.setItem('notes', JSON.stringify(notes));
+    await axios.delete(`/api/notes/${id}`);
     dispatch({
       type: DELETE_NOTE,
     });
     dispatch(getAllNotes());
     dispatch(setAlert('Note Deleted', 'danger'));
   } catch (error) {
+    dispatch({
+      type: NOTE_ERROR,
+    });
+  }
+};
+
+// Editing notes
+export const editNote = (formData, id) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const res = await axios.put(
+      `/api/notes/${id}`,
+      JSON.stringify(formData),
+      config
+    );
+
+    dispatch({
+      type: EDIT_NOTE,
+      payload: res.data,
+    });
+    dispatch(setAlert('Note Edited', 'success'));
+    dispatch(getAllNotes());
+    history.push('/create-note');
+  } catch (error) {
+    const errors = error.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
     dispatch({
       type: NOTE_ERROR,
     });

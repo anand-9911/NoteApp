@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { addNotes, getAllNotes } from '../../actions/notes';
+import { addNotes } from '../../actions/notes';
 import { connect } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
 
 const AddNotes = ({ addNotes }) => {
   const [formData, setformData] = useState({
@@ -14,14 +13,12 @@ const AddNotes = ({ addNotes }) => {
 
   const [dateTime, setDateTime] = useState('');
   const { title, description, date, time } = formData;
-  console.log(dateTime);
 
   const onDateChange = (e) => {
     setDateTime(e.target.value);
   };
 
   const onChange = (e) => {
-    const id = uuidv4();
     setformData({
       ...formData,
       [e.target.name]: e.target.value,

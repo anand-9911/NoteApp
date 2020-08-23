@@ -28,12 +28,12 @@ export default function (state = { initialState }, action) {
     case DELETE_NOTE:
       return {
         ...state,
+        loading: false,
+        note: payload,
       };
     case EDIT_NOTE:
       return {
         ...state,
-        isEditClicked: false,
-        editNote: {},
       };
     case GET_NOTES:
       return {

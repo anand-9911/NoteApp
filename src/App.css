@@ -185,3 +185,44 @@ ul {
   font-size: larger;
   color: black;
 }
+
+@media (max-width: 1017px) {
+  .dateTime {
+    display: block;
+    border: none;
+    float: left;
+    color: brown;
+  }
+  .dateTime span {
+    font-size: larger;
+    color: black;
+  }
+  .list-group-item {
+    height: 20vh;
+  }
+}
+@media (max-width: 629px) {
+  .list-group-item {
+    height: 25vh;
+  }
+}
+@media (max-width: 567px) {
+  .list-group-item {
+    height: 30vh;
+  }
+}
+
+#view-note ul {
+  display: flex;
+  justify-content: flex-end;
+  font-weight: 600;
+}
+
+#view-note p {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  font-weight: 400;
+  font-size: medium;
+}

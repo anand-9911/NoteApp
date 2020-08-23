@@ -6,11 +6,8 @@ import NoteItem from './NoteItem';
 
 const ShowNote = ({ getAllNotes, notes }) => {
   useEffect(() => {
-    console.log('Check1');
     getAllNotes();
   }, [getAllNotes]);
-
-  console.log(notes);
 
   const [input, setInput] = useState('');
 

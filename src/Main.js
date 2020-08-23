@@ -12,19 +12,12 @@ const Main = () => {
             <AddNotes />
           </Col>
           <Col>
-            <ShowNote/>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <div>EditNote</div>
+            <ShowNote />
           </Col>
         </Row>
       </Container>
     </>
   );
 };
-
-
 
 export default Main;

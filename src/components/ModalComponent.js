@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-bootstrap/Modal';
 
-const ModalComponent = ({ title, content, actions, onDismiss }) => {
+const ModalComponent = ({ title, content, actions }) => {
   const onModalClick = (e) => {
     const modal = document.getElementById('modal-create');
     if (e.target == modal) {
